@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(circle at 15% 10%, #FFF4C9 0%, rgba(255, 244, 201, 0) 45%),
+    radial-gradient(circle at 85% 20%, #DFF6E1 0%, rgba(223, 246, 225, 0) 40%),
+    linear-gradient(180deg, #FFFDF5 0%, #FFF9E6 100%);
+  color: #5A4632;
+  font-family: "Hiragino Maru Gothic ProN", "Zen Maru Gothic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+/* ====== イラストのアニメーション ====== */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes walk {
+  0% { transform: translateX(-8px) rotate(-1.5deg); }
+  50% { transform: translateX(8px) rotate(1.5deg); }
+  100% { transform: translateX(-8px) rotate(-1.5deg); }
+}
+@keyframes pop {
+  0% { transform: scale(0.85); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  40% { transform: scale(0.95); }
+}
+@keyframes drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.anim-float { animation: float 4s ease-in-out infinite; }
+.anim-bob { animation: bob 2.4s ease-in-out infinite; }
+.anim-wiggle { animation: wiggle 2.2s ease-in-out infinite; transform-origin: bottom center; }
+.anim-walk { animation: walk 1.6s ease-in-out infinite; }
+.anim-pop { animation: pop 0.5s ease-out both; }
+.anim-heartbeat { animation: heartbeat 1.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-float, .anim-bob, .anim-wiggle, .anim-walk, .anim-heartbeat { animation: none; }
+}
+
+/* 足あとの流れる帯 */
+.paw-track {
+  display: flex;
+  width: 200%;
+  animation: drift 18s linear infinite;
+}
+
+.card {
+  background: #fff;
+  border: 2px solid #FBE8B0;
+  border-radius: 1.5rem;
+  box-shadow: 0 12px 28px -16px rgba(176, 122, 79, 0.45);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #FCE14B, #F6CE2E);
+  color: #5A4632;
+  border: 2px solid #EBC02A;
+  border-radius: 9999px;
+  font-weight: 800;
+  box-shadow: 0 6px 0 0 #E2B526;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 0 0 #E2B526; }
+.btn-primary:active { transform: translateY(2px); box-shadow: 0 3px 0 0 #E2B526; }
+
+.btn-pink {
+  background: linear-gradient(180deg, #FFAFC0, #FF8DA3);
+  color: #fff;
+  border: 2px solid #F57A92;
+  border-radius: 9999px;
+  font-weight: 800;
+  box-shadow: 0 6px 0 0 #ED6F88;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn-pink:hover { transform: translateY(-2px); }
+.btn-pink:active { transform: translateY(2px); box-shadow: 0 3px 0 0 #ED6F88; }
+
+input, textarea, select {
+  background: #FFFDF5;
+  border: 2px solid #F1DFA0;
+  border-radius: 0.9rem;
+  padding: 0.7rem 0.9rem;
+  width: 100%;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #F6CE2E;
+  box-shadow: 0 0 0 4px rgba(252, 225, 75, 0.3);
+}
+label { font-weight: 700; font-size: 0.9rem; }
+
+details[open] .faq-mark { transform: rotate(45deg); }
+details summary::-webkit-details-marker { display: none; }
